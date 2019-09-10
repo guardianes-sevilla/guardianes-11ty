@@ -1,0 +1,26 @@
+{% from "partials/icon.njk" import icon %}
+{% set isHome = page.url == '/' %}
+
+<header class="site-head {% if isHome %}home-head{% endif %}">
+  <div class="container">
+    {% include 'partials/navigation.njk' %}
+    {% if isHome %}
+    <div class="site-banner">
+      <img class="site-cover" src="{{ site.cover_image }}" alt="site cover" />
+      <h1 class="site-banner-title">{{ site.title }}</h1>
+      <p class="site-banner-desc">{{ site.description }}</p>
+    </div>
+    {% endif %}
+  </div>
+  <div class="social-icons">
+    <a href="https://facebook.com/GuardianesSevilla">
+      {{ icon({ width: 32, height: 32, color: '#157dc4', id: 'facebook' }) }}
+    </a>
+    <a href="https://twitter.com/asoguardianes">
+      {{ icon({ width: 32, height: 32, color: '#157dc4', id: 'twitter' }) }}
+    </a>
+    <a href="feed.xml">
+      {{ icon({ width: 32, height: 32, color: '#157dc4', id: 'rss' }) }}
+    </a>
+  </div>
+</header>

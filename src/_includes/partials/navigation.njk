@@ -1,0 +1,56 @@
+{% set isHome = page.url == '/' %}
+<nav class="site-nav">
+  {% if not isHome %}
+  <a class="site-logo" href="{{site.url}}">
+    <img src="{{site.icon}}" alt="{{site.title}}" />
+  </a>
+  {% endif %}
+  <ul class="site-nav-list">
+    {% set tags = site.navigation | navigation %}
+    {% for tag in tags %}
+    <li class="site-nav-item tag-{{tag.slug}}">
+      <span id="dropdown-label-{{tag.slug}}"
+        class="site-nav-dropdown-label"
+        aria-haspopup="true"
+        aria-controls="dropdown-{{tag.slug}}">
+        {{ tag.name }}
+      </span>
+      <ul id="dropdown-{{tag.slug}}"
+        role="menu"
+        aria-labelledby="dropdown-label-{{tag.slug}}"
+        class="site-nav-dropdown">
+        {% for post in collections.posts | filterByTag(tag.slug) %}
+        <li>
+          <a role="menuitem" 
+            {% if page.url == item.url %}aria-current="page" {% endif %}
+            href="{{post.url}}">{{ post.title }}</a>
+        </li>
+        {% endfor %}
+      </ul>
+    </li>
+    {% endfor %}
+    <li class="site-nav-item more has-items">
+      <span id="dropdown-label--more"
+        class="site-nav-dropdown-label"
+        aria-haspopup="true"
+        aria-controls="dropdown--more">
+        . . .
+      </span>
+      <ul id="dropdown--more"
+        role="menu"
+        aria-labelledby="dropdown-label--more"
+        class="site-nav-dropdown">
+      </ul>
+    </li>
+  </ul>
+  {# {% if collections.docs %}
+  <div class="site-nav-right">
+    {% for doc in collections.docs %}
+    <a {% if page.url == doc.url %}aria-current="page" {% endif %}
+      class="site-nav-button{% if doc.featured %}  site-nav-button-featured{% endif %}" href="{{ doc.url }}">
+      {{ doc.meta_title if doc.meta_title else doc.title }}
+    </a>
+    {% endfor %}
+  </div>
+  {% endif %} #}
+</nav>
