@@ -825,13 +825,15 @@ ul.site-nav-dropdown {
   padding-bottom: 4vh;
 }
 
-.site-head img {
-  opacity: 0;
-  transition: opacity 0.75s ease;
-}
-
-.site-head img.lazyloaded {
-  opacity: 1;
+@media (min-width: 600px) {
+  .site-head img {
+    opacity: 0;
+    transition: opacity 0.75s ease;
+  }
+  
+  .site-head img.lazyloaded {
+    opacity: 1;
+  }
 }
 
 .site-mast {
