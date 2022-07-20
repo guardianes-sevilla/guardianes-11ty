@@ -40,7 +40,7 @@
     "eleventy-plugin-lazyimages": "liamfiddler/eleventy-plugin-lazyimages",
     "eleventy-plugin-local-images": "^0.3.0",
     "html-minifier": "^4.0.0",
-    "terser": "^4.2.0"
+    "terser": "^4.8.1"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
